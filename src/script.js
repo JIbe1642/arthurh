@@ -71,7 +71,7 @@ const controls = new OrbitControls(camera, canvas);
 
 controls.enableDamping = true
 controls.enableRotate = false
-
+controls.zoomSpeed = -1
 
 //controls.enableZoom=false;
 //controls.enablePan=false;
@@ -145,10 +145,55 @@ mesh.visible = false;
  * Animate
  */
 
+let tracks=[
+    {name:"La vie",x:100,y:110,element:'.p0',content:`“J’ai écouté Léo ferré et j’ai écrit cette chanson d’un jet, en deux heures, sans douter. Toujours dans l’idée de l’ombre et de la lumière, Eros et Thanatos, la vie comme voyage initiatique…”`},
+    {name:"La route",x:48,y:-7,element:'.p1'},  
+    {name:"L'océan",x:-10,y:-26,element:'.p2'},
+    {name:"Le secret",x:-100,y:-10,element:'.p3'},
+    {name:"El magnifico",x:-90,y:-90,element:'.p4'},
+    {name:"Titanic",x:10,y:-60,element:'.p5'},
+    {name:"Divin blasphème",x:-115,y:40,element:'.p6'},
+    {name:"L’innocence",x:-65,y:-30,element:'.p7'},
+    {name:"Addict",x:65,y:-90,element:'.p8'},
+    {name:"La folie du contrôle",x:130,y:70,element:'.p9'},
+    {name:"Cet amour me tue",x:120,y:-50,element:'.p10'},
+    {name:"L'étoile",x:-120,y:-130,element:'.p11'},
+]
+
+let points = [];
+
+const geo = new THREE.SphereGeometry(.025, 32, 16);
+const mat = new THREE.MeshBasicMaterial({ color: 0xffff00, transparent: true, opacity: 0 });
+
+
+tracks.forEach((track,index)=>{
+    points.push(new THREE.Mesh(geo,mat));
+    points[index].element=document.querySelector(track.element)
+    scene.add(points[index]);
+    points[index].position.x=track.x/100
+    points[index].position.y=-track.y/100
+})
+
+
+
+
+
 function animate() {
     requestAnimationFrame(animate);
     controls.update();
     renderer.render(scene, camera);
+
+
+
+    for (const point of points) {
+        const screenPosition = point.position.clone()
+        screenPosition.project(camera)
+
+        const translateX = screenPosition.x * sizes.width * 0.5 - 11.5
+        const translateY = -screenPosition.y * sizes.height * 0.5 - 11.5
+
+        point.element.style.transform = `translate(${translateX}px, ${translateY}px)`
+      }
 }
 
 
@@ -176,7 +221,7 @@ document.querySelector('.cta-tuto').addEventListener('click',()=>{
         document.querySelector('.order-cta').classList.remove('hide')
         document.querySelector('.main-canvas').classList.remove('hide')
         document.body.classList.add('grab')
-
+        document.querySelector('.points').classList.remove('hide')
 
     },500)
 
@@ -193,4 +238,11 @@ document.body.addEventListener('mousedown',()=>{
 
 document.body.addEventListener('mouseup',()=>{
         document.body.classList.remove('grabbing')
+})
+
+document.querySelectorAll('.points').forEach(point=>{
+    point.addEventListener('click',()=>{
+        console.log(point)
+        document.querySelector('.section-player').classList.remove('hide')
+    })
 })
