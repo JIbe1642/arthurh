@@ -1,8 +1,99 @@
 body{
     margin:0;
+    padding:0;
+    overflow: hidden;
 }
 
-.main-canvas{
-    width:100vw;
-    height:100vh;
+.grab{
+    cursor:grab;
 }
+
+.grabbing{
+    cursor:grabbing;
+}
+
+
+.main-canvas {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.main-canvas.hide{
+opacity: 0;
+}
+
+main {
+    position: fixed;
+    z-index: 2;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+.main-video {
+    height: 47vh;
+    position: absolute;
+    margin-top: -1vh;
+}
+
+.cta{
+    cursor:pointer;
+    transition:all .4s ease;
+    border:2px solid #2c2e2b;
+    position: relative;
+    z-index: 10;
+}
+
+.cta:hover{
+    color:#2c2e2b;
+    background-color: white;
+}
+
+.hide{
+    pointer-events: none;
+}
+
+.lavie{
+    height: 50vh;
+    margin-bottom: -3vh;
+    position: relative;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.lavie img {
+    height: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.tuto-title{
+    z-index: 10;
+}
+
