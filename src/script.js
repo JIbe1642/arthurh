@@ -225,11 +225,11 @@ const openCover = () => {
     mesh.visible = true;
 }
 
-document.querySelector('.cta-tuto').addEventListener('click',()=>{
+document.querySelector('.cta-tuto').addEventListener('click', () => {
     openCover();
 })
 
-document.querySelector('.lavie').addEventListener('click',()=>{
+document.querySelector('.lavie').addEventListener('click', () => {
     openCover();
 })
 
@@ -244,26 +244,35 @@ document.body.addEventListener('mouseup', () => {
     document.body.classList.remove('grabbing')
 })
 
-var n_track=0;
+var n_track = 0;
 
-const load_track=(num)=>{
+const load_track = (num, direct) => {
 
-    n_track=num;
+    n_track = num;
 
-    document.querySelector('.player-title').innerHTML = tracks[num].name
-    document.querySelector('.player-text').innerHTML = tracks[num].content
+
     document.querySelector('.section-player').classList.remove('hide')
 
-    document.querySelector('.player-video').classList.remove('video-p0','video-p1','video-p2','video-p3','video-p4','video-p5','video-p6','video-p7','video-p8','video-p9','video-p10','video-p11')
+    document.querySelector('.player-video').classList.remove('video-p0', 'video-p1', 'video-p2', 'video-p3', 'video-p4', 'video-p5', 'video-p6', 'video-p7', 'video-p8', 'video-p9', 'video-p10', 'video-p11')
+    document.querySelector('.player-video').classList.add('video-p' + num)
 
-    document.querySelector('.player-video').classList.add('video-p'+num)
+    var time = direct ? 0 : 1000;
+
+    setTimeout(() => {
+        document.querySelector('.player-title').innerHTML = tracks[num].name
+        document.querySelector('.player-text').innerHTML = tracks[num].content
+        document.querySelector('.player-bottom').classList.remove('hide')
+    }, time)
+
+    console.log(direct)
+
 }
 
 
 document.querySelectorAll('.point').forEach(point => {
 
     point.addEventListener('click', () => {
-        load_track(point.dataset.number);
+        load_track(point.dataset.number,true);
     })
 
     point.addEventListener('mouseover', () => {
@@ -280,16 +289,20 @@ document.querySelectorAll('.point').forEach(point => {
 
 document.querySelector('.next').addEventListener('click', () => {
     n_track++;
-    n_track%=12;
+    n_track %= 12;
 
-    load_track(n_track);
+    document.querySelector('.player-bottom').classList.add('hide')
+    load_track(n_track,false);
+
+
 })
 
 document.querySelector('.previous').addEventListener('click', () => {
-    n_track+=11;
-    n_track%=12;
+    n_track += 11;
+    n_track %= 12;
 
-    load_track(n_track);
+    document.querySelector('.player-bottom').classList.add('hide')
+    load_track(n_track,false);
 })
 
 

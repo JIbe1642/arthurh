@@ -252,3 +252,15 @@ main {
     justify-content: center;
     align-items: center;
 }
+
+.player-bottom{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease-in-out;
+}
+
+.player-bottom.hide{
+    opacity: 0;
+}
