@@ -183,17 +183,48 @@ main {
     position: absolute;
 }
 
-.video-p7{
-    transform: translate(22%, 13%);
-}
 
 .video-p0{
     transform: translate(-21.5%, -23%) scale(.65);
 }
 
-.video-p1{
-    transform: translate(-21.5%, -23%) scale(.65);
+.video-p1 {
+    transform: translate(-16%, 2%);
 }
+
+.video-p2 {
+    transform: translate(2%, 12%);
+}
+
+.video-p3 {
+    transform: translate(19%, 8%) scale(.7);
+}
+
+
+.video-p4 {
+    transform: translate(16%, 16%) scale(.6);
+}
+
+.video-p5 {
+    transform: translate(1%, 13%) scale(.6);
+}
+
+.video-p6 {
+    transform: translate(29.5%, -9%) scale(.8);
+}
+
+.video-p7{
+    transform: translate(22%, 13%);
+}
+
+.video-p8 {
+    transform: translate(-19%, 23%) scale(.8);
+}
+
+.video-p9 {
+    transform: translate(-35%, -13%) scale(.9);
+}
+
 
 .player-top{
     position: relative;

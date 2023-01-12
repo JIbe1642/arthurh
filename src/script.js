@@ -255,7 +255,7 @@ document.querySelectorAll('.point').forEach(point => {
         document.querySelector('.section-player').classList.remove('hide')
 
 
-        document.querySelector('.player-video').classList.remove('video-p0','video-p1','video-p2')
+        document.querySelector('.player-video').classList.remove('video-p0','video-p1','video-p2','video-p3','video-p4','video-p5','video-p6','video-p7','video-p8','video-p9','video-p10','video-p11')
 
         document.querySelector('.player-video').classList.add('video-p'+num)
     })
