@@ -19,7 +19,10 @@ const range = (x1, y1, x2, y2, a) => lerp(x2, y2, invlerp(x1, y1, a));
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
+//divers
 const legend = document.querySelector('.legend')
+var audio_track=new Audio();
+
 
 // Scene
 const scene = new THREE.Scene()
@@ -155,11 +158,11 @@ let tracks = [
     { name: "El magnifico", x: -90, y: -90, element: '.p4', content: `“La vision d’un oiseau de feu. Un conte russe que j’adorais quand j’étais enfant. Une histoire d’amitié dans la tourmente.”` },
     { name: "Titanic", x: 10, y: -60, element: '.p5', content: `“Une parabole poético-politique. Dans l’orchestre du Titanic, il y avait un musicien français qui a dû continuer à jouer jusqu’au bout, la musique empêchait, apparemment, les gens de paniquer. Je me suis imaginé à sa place, jouant pour les étoiles et la nuit et la vie.”` },
     { name: "Divin blaspheme", x: -115, y: 40, element: '.p6', content: `“Une chanson déclaration hommage pour ma reine Brigitte Fontaine. Ma petite fée bizarre qui était là à ma naissance et qui ne m’a jamais quitté. Une artiste fantastique et une source continue d’inspiration : audace, poésie, humour, créativité débridée… “ ` },
-    { name: "L innocence", x: -65, y: -30, element: '.p7', content: `“Une chanson dramatique et excitante de crise de couple ou, peut-être, chacun pourra se reconnaître.” ` },
+    { name: "L'innocence", x: -65, y: -30, element: '.p7', content: `“Une chanson dramatique et excitante de crise de couple ou, peut-être, chacun pourra se reconnaître.” ` },
     { name: "Addict", x: 65, y: -90, element: '.p8', content: `“Nous vivons dans une société basée sur l’addiction, à tous les niveaux, à toutes les échelles, l’addiction comme façon de vivre, de consommer, de rêver. L’addiction non pas tolérée mais encouragée dans des proportions délirantes, une société saine ?”` },
     { name: "La folie du controle", x: 130, y: 70, element: '.p9', content: `“Petite réflexion philosophique sur la pulsions archaïque et paranoïaque des gens de pouvoir pour le contrôle et la surveillance, sous toutes ses formes. Sur la disparition programmée de contre-pouvoirs efficaces. Inspiré de faits réels et récents.”  ` },
     { name: "Cet amour me tue", x: 120, y: -50, element: '.p10', content: `“Cette chanson est dans le film « Sound of Metal » de Darius Marder où Mathieu Amalric et Olivia Cooke la fredonne. Je l’ai ensuite chanté avec Martha Wainwright pour la BO du film. J’ai refait une version pour le disque avec des chœurs de Léonore et des cordes-samples très sombres de Nicolas Repac.” ` },
-    { name: "L etoile", x: -120, y: -130, element: '.p11', content: `“Une comptine cosmique et une chanson d’amour pour ma femme. Avec la harpe merveilleuse de Pauline Haaset les matières sonores si riches de Thomas Bloch aux Ondes Martenots et au Cristal Baschet.”` },
+    { name: "L'etoile", x: -120, y: -130, element: '.p11', content: `“Une comptine cosmique et une chanson d’amour pour ma femme. Avec la harpe merveilleuse de Pauline Haaset les matières sonores si riches de Thomas Bloch aux Ondes Martenots et au Cristal Baschet.”` },
 ]
 
 let points = [];
@@ -264,7 +267,9 @@ const load_track = (num, direct) => {
         document.querySelector('.player-bottom').classList.remove('hide')
     }, time)
 
-    console.log(direct)
+
+    audio_track.src=('sounds/'+parseInt(num+1)+'.mp3');
+    audio_track.play();
 
 }
 

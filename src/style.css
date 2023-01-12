@@ -48,11 +48,10 @@ main {
 }
 
 .main-video {
-    height: 47vh;
+    height: 58vh;
     position: absolute;
     margin-top: -1vh;
 }
-
 
 
 .cta {
@@ -78,8 +77,8 @@ main {
 }
 
 .lavie {
-    height: 50vh;
-    margin-bottom: -3vh;
+    height: 70vh;
+    margin-bottom: -5vh;
     position: relative;
 
     display: -webkit-box;

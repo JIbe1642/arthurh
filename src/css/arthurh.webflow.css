@@ -290,8 +290,9 @@ flex-direction: column;
 .player-title {
   font-family: Lot, sans-serif;
   font-size: 120px;
-  line-height: 120px;
+  line-height: 100px;
   letter-spacing: 6px;
+  text-align: center;
 }
 
 .player-text {
