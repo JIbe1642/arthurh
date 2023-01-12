@@ -53,10 +53,7 @@ main {
     margin-top: -1vh;
 }
 
-.player-video {
-    height: 47vh;
-    position: absolute;
-}
+
 
 .cta {
     cursor: pointer;
@@ -179,4 +176,39 @@ main {
         align-items: center;
         margin-bottom: 30px;
 
+}
+
+.player-video {
+    height: 160vh;
+    position: absolute;
+}
+
+.video-p7{
+    transform: translate(22%, 13%);
+}
+
+.video-p0{
+    transform: translate(-21.5%, -23%) scale(.65);
+}
+
+.video-p1{
+    transform: translate(-21.5%, -23%) scale(.65);
+}
+
+.player-top{
+    position: relative;
+}
+
+.cta-close {
+    width: 46px;
+    height: 46px;
+    background: #2c2e2b;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-1.4vh, 1.4vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

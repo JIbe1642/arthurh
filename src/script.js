@@ -211,8 +211,6 @@ document.querySelector('.cta-intro').addEventListener('click', () => {
 
 
 
-
-
 const openCover = () => {
     document.querySelector('.section-tuto').classList.add('hide')
 
@@ -236,7 +234,6 @@ document.querySelector('.lavie').addEventListener('click',()=>{
 })
 
 
-
 document.body.addEventListener('mousedown', () => {
     if (document.body.classList.contains('grab')) {
         document.body.classList.add('grabbing')
@@ -256,6 +253,11 @@ document.querySelectorAll('.point').forEach(point => {
         document.querySelector('.player-text').innerHTML = tracks[num].content
 
         document.querySelector('.section-player').classList.remove('hide')
+
+
+        document.querySelector('.player-video').classList.remove('video-p0','video-p1','video-p2')
+
+        document.querySelector('.player-video').classList.add('video-p'+num)
     })
 
     point.addEventListener('mouseover', () => {
