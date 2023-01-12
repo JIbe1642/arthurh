@@ -154,4 +154,5 @@ main {
 
 .legend{
     position: fixed;
+    z-index: 2000;
 }

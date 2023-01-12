@@ -36,7 +36,7 @@ var sizes = {
  * Camera
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
-camera.position.z = 3
+camera.position.z = 2.6
 scene.add(camera)
 
 
@@ -73,16 +73,16 @@ const controls = new OrbitControls(camera, canvas);
 
 controls.enableDamping = true
 controls.enableRotate = false
-controls.zoomSpeed = -1
+//controls.zoomSpeed = -1
 
 //controls.enableZoom=false;
 //controls.enablePan=false;
 
 
-/*
-controls.minDistance = 0.6
-controls.maxDistance = 30
-*/
+
+controls.minDistance = 0.2
+controls.maxDistance = 4
+
 
 
 controls.mouseButtons = {
