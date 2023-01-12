@@ -83,7 +83,7 @@
 }
 
 .cta.order-cta.hide {
-  display: none;
+opacity: 0;
 }
 
 .text-block {

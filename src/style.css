@@ -53,6 +53,11 @@ main {
     margin-top: -1vh;
 }
 
+.player-video {
+    height: 47vh;
+    position: absolute;
+}
+
 .cta {
     cursor: pointer;
     transition: all .4s ease;
@@ -92,6 +97,12 @@ main {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.hide .lavie{
+    pointer-events: none;
 }
 
 .lavie img {
@@ -155,4 +166,17 @@ main {
 .legend{
     position: fixed;
     z-index: 2000;
+}
+
+.player-img-wrapper{
+        height: 30vh;
+        width: 30vh;
+        overflow: hidden;
+        border-radius: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+
 }
