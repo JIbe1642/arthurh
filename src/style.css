@@ -129,7 +129,14 @@ main {
 .point img {
     width: 13px;
     height: 13px;
+    transition: all .4s ease;
 }
+
+
+.point:hover img{
+transform: scale(.7);
+}
+
 
 .points {
     transition: all 1s ease;
@@ -325,4 +332,8 @@ main {
 
 .icon-play {
     transform: translateX(1px);
+}
+
+.hide .cta{
+    pointer-events: none;
 }
