@@ -1,15 +1,15 @@
-body{
-    margin:0;
-    padding:0;
+body {
+    margin: 0;
+    padding: 0;
     overflow: hidden;
 }
 
-.grab{
-    cursor:grab;
+.grab {
+    cursor: grab;
 }
 
-.grabbing{
-    cursor:grabbing;
+.grabbing {
+    cursor: grabbing;
 }
 
 
@@ -23,8 +23,8 @@ body{
     transition: opacity 1s ease-in-out;
 }
 
-.main-canvas.hide{
-opacity: 0;
+.main-canvas.hide {
+    opacity: 0;
 }
 
 main {
@@ -53,25 +53,29 @@ main {
     margin-top: -1vh;
 }
 
-.cta{
-    cursor:pointer;
-    transition:all .4s ease;
-    border:2px solid #2c2e2b;
+.cta {
+    cursor: pointer;
+    transition: all .4s ease;
+    border: 2px solid #2c2e2b;
     position: relative;
     z-index: 1000;
     pointer-events: auto;
 }
 
-.cta:hover{
-    color:#2c2e2b;
+.cta:hover {
+    color: #2c2e2b;
     background-color: white;
 }
 
-.hide{
+.section-player{
+    pointer-events:auto;
+}
+
+.hide {
     pointer-events: none;
 }
 
-.lavie{
+.lavie {
     height: 50vh;
     margin-bottom: -3vh;
     position: relative;
@@ -96,7 +100,7 @@ main {
     z-index: 10;
 }
 
-.tuto-title{
+.tuto-title {
     z-index: 10;
 }
 
@@ -112,20 +116,21 @@ main {
     align-items: center;
     cursor: pointer;
     pointer-events: auto;
-  }
+}
 
-  .point img{
+.point img {
     width: 13px;
-    height:13px;
-  }
+    height: 13px;
+}
 
-.points{
+.points {
     transition: all 1s ease;
     position: fixed;
     z-index: 10;
     pointer-events: none;
 }
 
-  .points.hide{
+.points.hide {
     opacity: 0;
-  }
+}
+
