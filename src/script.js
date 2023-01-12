@@ -219,7 +219,7 @@ const openCover = () => {
         document.querySelector('.main-canvas').classList.remove('hide')
         document.body.classList.add('grab')
         document.querySelector('.points').classList.remove('hide')
-
+        document.querySelector('.zoom-indic').classList.remove('hide')
     }, 500)
 
     mesh.visible = true;
@@ -248,9 +248,9 @@ var n_track = 0;
 
 const load_track = (num, direct) => {
 
+    document.querySelector('.zoom-indic').classList.add('hide')
+
     n_track = num;
-
-
     document.querySelector('.section-player').classList.remove('hide')
 
     document.querySelector('.player-video').classList.remove('video-p0', 'video-p1', 'video-p2', 'video-p3', 'video-p4', 'video-p5', 'video-p6', 'video-p7', 'video-p8', 'video-p9', 'video-p10', 'video-p11')
@@ -308,6 +308,7 @@ document.querySelector('.previous').addEventListener('click', () => {
 
 document.querySelector('.player-top').addEventListener('click', () => {
     document.querySelector('.section-player').classList.add('hide')
+    document.querySelector('.zoom-indic').classList.remove('hide')
 })
 
 const mouse = new THREE.Vector2()
