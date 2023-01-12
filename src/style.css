@@ -225,6 +225,13 @@ main {
     transform: translate(-35%, -13%) scale(.9);
 }
 
+.video-p10 {
+    transform: translate(-33%, 25%) scale(.85);
+}
+
+.video-p11 {
+    transform: translate(-33%, 25%) scale(.85);
+}
 
 .player-top{
     position: relative;
