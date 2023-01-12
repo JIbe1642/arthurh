@@ -48,6 +48,7 @@
   font-weight: 400;
   letter-spacing: 3.5px;
   transition: all 1s ease;
+  z-index: 1000;
 }
 
 .logo-title.main {
