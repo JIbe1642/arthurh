@@ -134,3 +134,24 @@ main {
     opacity: 0;
 }
 
+.point-text {
+    background: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 7px 14px 5px;
+    font-size: 16px;
+    position: absolute;
+    transition: all .4s ease;
+    transform:translate(-50% , -130%);
+    white-space: nowrap;
+}
+
+.hide .point-text{
+    opacity: 0;
+    transform:translate(-50% , -100%)
+}
+
+.legend{
+    position: fixed;
+}

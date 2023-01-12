@@ -19,6 +19,8 @@ const range = (x1, y1, x2, y2, a) => lerp(x2, y2, invlerp(x1, y1, a));
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
+const legend= document.querySelector('.legend')
+
 // Scene
 const scene = new THREE.Scene()
 
@@ -176,14 +178,10 @@ tracks.forEach((track,index)=>{
 
 
 
-
-
 function animate() {
     requestAnimationFrame(animate);
     controls.update();
     renderer.render(scene, camera);
-
-
 
     for (const point of points) {
         const screenPosition = point.position.clone()
@@ -208,7 +206,6 @@ document.querySelector('.cta-intro').addEventListener('click',()=>{
     setTimeout(()=>{
         document.querySelector('.section-tuto').classList.remove('hide')
         document.querySelector('.logo-title').classList.remove('hide')
-
     },500)
 })
 
@@ -251,12 +248,35 @@ document.querySelectorAll('.point').forEach(point=>{
         document.querySelector('.section-player').classList.remove('hide')
     })
 
+    point.addEventListener('mouseover',()=>{
+        var num=point.dataset.number
+        document.querySelector('.point-text').innerHTML=tracks[num].name
+        legend.classList.remove('hide')
+    })
+
+    point.addEventListener('mouseleave',()=>{
+       legend.classList.add('hide')
+    })
+
 })
 
 
 
 document.querySelector('.section-player').addEventListener('click',()=>{
-
-
     document.querySelector('.section-player').classList.add('hide')
+})
+
+const mouse = new THREE.Vector2()
+
+document.body.addEventListener('mousemove',(e)=>{
+    var iks =  e.clientX 
+    var igrek =  e.clientY 
+
+    mouse.x = iks / sizes.width * 2 - 1
+    mouse.y = -(igrek / sizes.height) * 2 + 1
+
+    var translateX = mouse.x * sizes.width * 0.5
+    var translateY = -mouse.y * sizes.height * 0.5 
+
+    legend.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
 })
