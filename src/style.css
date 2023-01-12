@@ -181,6 +181,7 @@ main {
 .player-video {
     height: 160vh;
     position: absolute;
+    transition: all 2s ease-in-out;
 }
 
 
@@ -230,11 +231,12 @@ main {
 }
 
 .video-p11 {
-    transform: translate(-33%, 25%) scale(.85);
+    transform: translate(27%, 33%) scale(.85);
 }
 
 .player-top{
     position: relative;
+    cursor: pointer;
 }
 
 .cta-close {
