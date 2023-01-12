@@ -77,8 +77,8 @@ main {
 }
 
 .lavie {
-    height: 70vh;
-    margin-bottom: -5vh;
+    height: 60vh;
+    margin-bottom: -1vh;
     position: relative;
 
     display: -webkit-box;
@@ -105,6 +105,7 @@ main {
     height: 100%;
     position: relative;
     z-index: 10;
+    pointer-events: none;
 }
 
 .tuto-title {
@@ -202,11 +203,11 @@ main {
 
 
 .video-p4 {
-    transform: translate(16%, 16%) scale(.6);
+    transform: translate(5%, 9%) scale(.4);
 }
 
 .video-p5 {
-    transform: translate(1%, 13%) scale(.6);
+    transform: translate(1%, 9%) scale(.4);
 }
 
 .video-p6 {
@@ -294,6 +295,9 @@ main {
     margin: 15px 0;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .zoom-inside {
@@ -301,8 +305,24 @@ main {
     width: 100%;
     height: 100%;
     position: absolute;
+    transition: all .2s linear;
 }
 
 .zoom-btn {
     cursor: pointer;
+}
+
+.icon-play,
+.icon-pause {
+    position: absolute;
+    transition: all 1s ease;
+}
+
+.icon-play.hide,
+.icon-pause.hide {
+    opacity: 0;
+}
+
+.icon-play {
+    transform: translateX(1px);
 }

@@ -21,7 +21,13 @@ const canvas = document.querySelector('canvas.webgl')
 
 //divers
 const legend = document.querySelector('.legend')
+const bar = document.querySelector('.playing')
+const cursor = document.querySelector('.player-cursor')
+const zoom=document.querySelector('.zoom-inside')
+
+
 var audio_track=new Audio();
+
 
 
 // Scene
@@ -38,7 +44,7 @@ var sizes = {
 /**
  * Camera
  */
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height,.1,100)
 camera.position.z = 2.6
 scene.add(camera)
 
@@ -64,8 +70,6 @@ function onWindowResize() {
     camera.aspect = sizes.width / sizes.height;
     camera.updateProjectionMatrix();
     renderer.setSize(sizes.width, sizes.height);
-
-
 }
 
 
@@ -81,12 +85,8 @@ controls.enableRotate = false
 //controls.enableZoom=false;
 //controls.enablePan=false;
 
-
-
-controls.minDistance = 0.2
-controls.maxDistance = 4
-
-
+controls.minDistance = .5
+controls.maxDistance = 4.5
 
 controls.mouseButtons = {
     LEFT: THREE.MOUSE.PAN,
@@ -195,6 +195,23 @@ function animate() {
 
         point.element.style.transform = `translate(${translateX}px, ${translateY}px)`
     }
+
+
+    if(audio_track.duration){
+
+        var percent=audio_track.currentTime/audio_track.duration*100;
+        bar.style.width=percent+'%';  
+
+        cursor.style.transform="translateX("+percent/100*240+"px)"
+
+    }else{
+        bar.style.width='0%';  
+        cursor.style.transform="translateX(0px)"
+    }
+
+    var z_percent=100-(camera.position.z-.5)/4*100
+    zoom.style.height=z_percent+'%';  
+    
 }
 
 
@@ -254,8 +271,9 @@ const load_track = (num, direct) => {
     document.querySelector('.zoom-indic').classList.add('hide')
 
     n_track = num;
-    document.querySelector('.section-player').classList.remove('hide')
+    audio_track.pause();
 
+    document.querySelector('.section-player').classList.remove('hide')
     document.querySelector('.player-video').classList.remove('video-p0', 'video-p1', 'video-p2', 'video-p3', 'video-p4', 'video-p5', 'video-p6', 'video-p7', 'video-p8', 'video-p9', 'video-p10', 'video-p11')
     document.querySelector('.player-video').classList.add('video-p' + num)
 
@@ -265,11 +283,12 @@ const load_track = (num, direct) => {
         document.querySelector('.player-title').innerHTML = tracks[num].name
         document.querySelector('.player-text').innerHTML = tracks[num].content
         document.querySelector('.player-bottom').classList.remove('hide')
+        audio_track.src=('sounds/'+num+'.mp3');
+        audio_track.play();
     }, time)
 
 
-    audio_track.src=('sounds/'+parseInt(num+1)+'.mp3');
-    audio_track.play();
+
 
 }
 
@@ -278,6 +297,7 @@ document.querySelectorAll('.point').forEach(point => {
 
     point.addEventListener('click', () => {
         load_track(point.dataset.number,true);
+        document.body.classList.remove('grab')
     })
 
     point.addEventListener('mouseover', () => {
@@ -310,11 +330,18 @@ document.querySelector('.previous').addEventListener('click', () => {
     load_track(n_track,false);
 })
 
+//close
 
 document.querySelector('.player-top').addEventListener('click', () => {
     document.querySelector('.section-player').classList.add('hide')
     document.querySelector('.zoom-indic').classList.remove('hide')
+    document.body.classList.add('grab')
+    audio_track.pause();
 })
+
+
+
+//legende
 
 const mouse = new THREE.Vector2()
 
@@ -329,4 +356,29 @@ document.body.addEventListener('mousemove', (e) => {
     var translateY = -mouse.y * sizes.height * 0.5
 
     legend.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
+})
+
+
+//sound
+
+document.querySelector('.control-main').addEventListener('click',()=>{
+    if(audio_track.paused){
+        audio_track.play()
+        document.querySelector('.icon-play').classList.add('hide')
+        document.querySelector('.icon-pause').classList.remove('hide')
+    }else{
+        audio_track.pause()
+        document.querySelector('.icon-play').classList.remove('hide')
+        document.querySelector('.icon-pause').classList.add('hide')
+    }
+})
+
+
+
+document.querySelector('.zoom-plus').addEventListener('click',()=>{
+    camera.position.z=camera.position.z-.4;
+})
+
+document.querySelector('.zoom-moins').addEventListener('click',()=>{
+    camera.position.z=camera.position.z+.4;
 })
