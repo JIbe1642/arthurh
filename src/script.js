@@ -338,7 +338,6 @@ const nextTrack=()=>{
             n=Math.round(Math.random()*11)
         }
 
-console.log(n)
         n_track=n;
         document.querySelector('.player-bottom').classList.add('hide')
         load_track(n_track, false);
