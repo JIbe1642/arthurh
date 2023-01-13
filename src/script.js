@@ -29,7 +29,7 @@ const zoom = document.querySelector('.zoom-inside')
 var audio_track = new Audio();
 
 var moveZoom = false;
-var zoomTo = 2.6;
+var zoomTo = 2.5;
 
 // Scene
 const scene = new THREE.Scene()
@@ -46,7 +46,7 @@ var sizes = {
  * Camera
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, .1, 100)
-camera.position.z = 2.6
+camera.position.z = zoomTo
 scene.add(camera)
 
 
@@ -81,7 +81,7 @@ const controls = new OrbitControls(camera, canvas);
 
 controls.enableDamping = true
 controls.enableRotate = false
-//controls.zoomSpeed = -1
+controls.zoomSpeed = .6
 
 //controls.enableZoom=false;
 //controls.enablePan=false;
@@ -219,7 +219,7 @@ function animate() {
     controls.update();
 
     if (moveZoom) {
-        camera.position.z = lerp(camera.position.z, zoomTo, .1)
+        camera.position.z = lerp(camera.position.z, zoomTo, .05)
     }
 
 
@@ -373,7 +373,7 @@ document.body.addEventListener('mousemove', (e) => {
 
 //sound
 
-document.querySelector('.control-main').addEventListener('click', () => {
+document.querySelector('.control-main').addEventListener('mousedown', () => {
     if (audio_track.paused) {
         audio_track.play()
         document.querySelector('.icon-play').classList.add('hide')
@@ -396,16 +396,16 @@ document.querySelector('.bar-control').addEventListener('click', (e) => {
 document.querySelector('.zoom-plus').addEventListener('click', () => {
 
     moveZoom = true
-    zoomTo = camera.position.z - .4;
+    zoomTo = zoomTo - 1;
 })
 
 document.querySelector('.zoom-moins').addEventListener('click', () => {
     moveZoom = true
-    zoomTo = camera.position.z + .4;
+    zoomTo = zoomTo + 1;
 })
 
 document.querySelector('.zoom-bar-wrapper').addEventListener('click', (e) => {
     moveZoom = true
-    zoomTo = range(0, 240, .5, 4.5, e.offsetY)
+    zoomTo = range(0, 180, .5, 4.5, e.offsetY)
 })
 

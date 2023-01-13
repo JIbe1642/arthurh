@@ -322,7 +322,7 @@ main {
 .icon-play,
 .icon-pause {
     position: absolute;
-    transition: all 1s ease;
+    transition: all .4s ease;
 }
 
 .icon-play.hide,
@@ -346,4 +346,17 @@ main {
 .zoom-bar-wrapper {
     padding: 0 3px;
     cursor: pointer;
+}
+
+.random:after,
+.loop:after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #2c2e2b;
+    bottom: -2px;
+    border-radius: 5px;
+    transition: all .4s ease;
+    opacity: 0;
 }
