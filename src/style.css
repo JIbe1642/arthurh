@@ -348,6 +348,10 @@ main {
     cursor: pointer;
 }
 
+.random,.loop{
+    position: relative;
+}
+
 .random:after,
 .loop:after {
     content: "";
@@ -359,4 +363,9 @@ main {
     border-radius: 5px;
     transition: all .4s ease;
     opacity: 0;
+}
+
+.random.active:after,
+.loop.active:after {
+    opacity: 1;
 }

@@ -31,6 +31,9 @@ var audio_track = new Audio();
 var moveZoom = false;
 var zoomTo = 2.5;
 
+var randomMode = false;
+var loopMode = false;
+
 // Scene
 const scene = new THREE.Scene()
 
@@ -99,8 +102,8 @@ controls.touches.ONE = THREE.TOUCH.PAN;
 controls.touches.TWO = THREE.TOUCH.DOLLY_ROTATE;
 
 
-controls.addEventListener('start',()=>{
-    moveZoom=false
+controls.addEventListener('start', () => {
+    moveZoom = false
 })
 
 /**
@@ -297,10 +300,9 @@ const load_track = (num, direct) => {
         document.querySelector('.player-bottom').classList.remove('hide')
         audio_track.src = ('sounds/' + num + '.mp3');
         audio_track.play();
+        document.querySelector('.icon-play').classList.add('hide')
+        document.querySelector('.icon-pause').classList.remove('hide')
     }, time)
-
-
-
 
 }
 
@@ -324,14 +326,37 @@ document.querySelectorAll('.point').forEach(point => {
 
 })
 
+//previous next
+
+const nextTrack=()=>{
+    if(randomMode){
+
+
+        var n=Math.round(Math.random()*11)
+        
+        while(n==n_track){
+            n=Math.round(Math.random()*11)
+        }
+
+console.log(n)
+        n_track=n;
+        document.querySelector('.player-bottom').classList.add('hide')
+        load_track(n_track, false);
+
+    }else{
+        n_track++;
+        n_track %= 12;
+    
+        document.querySelector('.player-bottom').classList.add('hide')
+        load_track(n_track, false);
+    }
+
+}
+
+
+
 document.querySelector('.next').addEventListener('click', () => {
-    n_track++;
-    n_track %= 12;
-
-    document.querySelector('.player-bottom').classList.add('hide')
-    load_track(n_track, false);
-
-
+nextTrack();
 })
 
 document.querySelector('.previous').addEventListener('click', () => {
@@ -394,7 +419,6 @@ document.querySelector('.bar-control').addEventListener('click', (e) => {
 //zoom
 
 document.querySelector('.zoom-plus').addEventListener('click', () => {
-
     moveZoom = true
     zoomTo = zoomTo - 1;
 })
@@ -409,3 +433,36 @@ document.querySelector('.zoom-bar-wrapper').addEventListener('click', (e) => {
     zoomTo = range(0, 180, .5, 4.5, e.offsetY)
 })
 
+//random loop
+
+document.querySelector('.random').addEventListener('click', (e) => {
+
+    if (!document.querySelector('.random').classList.contains('active')) {
+        randomMode = true
+        document.querySelector('.random').classList.add('active')
+    } else {
+        randomMode = false
+        document.querySelector('.random').classList.remove('active')
+    }
+
+})
+
+document.querySelector('.loop').addEventListener('click', (e) => {
+
+    if (!document.querySelector('.loop').classList.contains('active')) {
+        loopMode = true
+        document.querySelector('.loop').classList.add('active')
+    } else {
+        loopMode = false
+        document.querySelector('.loop').classList.remove('active')
+    }
+
+})
+
+
+
+audio_track.addEventListener('ended', () => {
+    if (loopMode) {
+        nextTrack();
+    }
+})
