@@ -465,3 +465,21 @@ audio_track.addEventListener('ended', () => {
         nextTrack();
     }
 })
+
+//youtube
+
+
+const YTPlayer = require('yt-player')
+var opts={autoplay:true,width:800,controls:false};
+
+
+const player = new YTPlayer('#player',{ 'controls': 0})
+player.mute();
+
+player.load('b2Yg_T_Mk0k', [true])
+//player.setVolume(100)
+
+
+player.on('playing', () => {
+  console.log(player.getDuration()) // => 351.521
+})

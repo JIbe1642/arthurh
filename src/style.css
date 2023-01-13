@@ -108,6 +108,16 @@ main {
     pointer-events: none;
 }
 
+.lavie video{
+    transition: opacity .4s ease;
+}
+
+.lavie:hover video{
+    opacity: .7;
+}
+
+
+
 .tuto-title {
     z-index: 10;
 }
@@ -368,4 +378,8 @@ main {
 .random.active:after,
 .loop.active:after {
     opacity: 1;
+}
+
+.yt-player{
+    z-index: 2022;
 }
