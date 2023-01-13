@@ -23,12 +23,13 @@ const canvas = document.querySelector('canvas.webgl')
 const legend = document.querySelector('.legend')
 const bar = document.querySelector('.playing')
 const cursor = document.querySelector('.player-cursor')
-const zoom=document.querySelector('.zoom-inside')
+const zoom = document.querySelector('.zoom-inside')
 
 
-var audio_track=new Audio();
+var audio_track = new Audio();
 
-
+var moveZoom = false;
+var zoomTo = 2.6;
 
 // Scene
 const scene = new THREE.Scene()
@@ -44,7 +45,7 @@ var sizes = {
 /**
  * Camera
  */
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height,.1,100)
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, .1, 100)
 camera.position.z = 2.6
 scene.add(camera)
 
@@ -97,6 +98,10 @@ controls.mouseButtons = {
 controls.touches.ONE = THREE.TOUCH.PAN;
 controls.touches.TWO = THREE.TOUCH.DOLLY_ROTATE;
 
+
+controls.addEventListener('start',()=>{
+    moveZoom=false
+})
 
 /**
  * Loading manager
@@ -183,8 +188,7 @@ tracks.forEach((track, index) => {
 
 function animate() {
     requestAnimationFrame(animate);
-    controls.update();
-    renderer.render(scene, camera);
+
 
     for (const point of points) {
         const screenPosition = point.position.clone()
@@ -197,21 +201,29 @@ function animate() {
     }
 
 
-    if(audio_track.duration){
+    if (audio_track.duration) {
 
-        var percent=audio_track.currentTime/audio_track.duration*100;
-        bar.style.width=percent+'%';  
+        var percent = audio_track.currentTime / audio_track.duration * 100;
+        bar.style.width = percent + '%';
 
-        cursor.style.transform="translateX("+percent/100*240+"px)"
+        cursor.style.transform = "translateX(" + percent / 100 * 240 + "px)"
 
-    }else{
-        bar.style.width='0%';  
-        cursor.style.transform="translateX(0px)"
+    } else {
+        bar.style.width = '0%';
+        cursor.style.transform = "translateX(0px)"
     }
 
-    var z_percent=100-(camera.position.z-.5)/4*100
-    zoom.style.height=z_percent+'%';  
-    
+    var z_percent = 100 - (camera.position.z - .5) / 4 * 100
+    zoom.style.height = z_percent + '%';
+
+    controls.update();
+
+    if (moveZoom) {
+        camera.position.z = lerp(camera.position.z, zoomTo, .1)
+    }
+
+
+    renderer.render(scene, camera);
 }
 
 
@@ -283,7 +295,7 @@ const load_track = (num, direct) => {
         document.querySelector('.player-title').innerHTML = tracks[num].name
         document.querySelector('.player-text').innerHTML = tracks[num].content
         document.querySelector('.player-bottom').classList.remove('hide')
-        audio_track.src=('sounds/'+num+'.mp3');
+        audio_track.src = ('sounds/' + num + '.mp3');
         audio_track.play();
     }, time)
 
@@ -296,7 +308,7 @@ const load_track = (num, direct) => {
 document.querySelectorAll('.point').forEach(point => {
 
     point.addEventListener('click', () => {
-        load_track(point.dataset.number,true);
+        load_track(point.dataset.number, true);
         document.body.classList.remove('grab')
     })
 
@@ -317,7 +329,7 @@ document.querySelector('.next').addEventListener('click', () => {
     n_track %= 12;
 
     document.querySelector('.player-bottom').classList.add('hide')
-    load_track(n_track,false);
+    load_track(n_track, false);
 
 
 })
@@ -327,7 +339,7 @@ document.querySelector('.previous').addEventListener('click', () => {
     n_track %= 12;
 
     document.querySelector('.player-bottom').classList.add('hide')
-    load_track(n_track,false);
+    load_track(n_track, false);
 })
 
 //close
@@ -361,24 +373,39 @@ document.body.addEventListener('mousemove', (e) => {
 
 //sound
 
-document.querySelector('.control-main').addEventListener('click',()=>{
-    if(audio_track.paused){
+document.querySelector('.control-main').addEventListener('click', () => {
+    if (audio_track.paused) {
         audio_track.play()
         document.querySelector('.icon-play').classList.add('hide')
         document.querySelector('.icon-pause').classList.remove('hide')
-    }else{
+    } else {
         audio_track.pause()
         document.querySelector('.icon-play').classList.remove('hide')
         document.querySelector('.icon-pause').classList.add('hide')
     }
 })
 
-
-
-document.querySelector('.zoom-plus').addEventListener('click',()=>{
-    camera.position.z=camera.position.z-.4;
+document.querySelector('.bar-control').addEventListener('click', (e) => {
+    audio_track.currentTime = audio_track.duration * (e.offsetX - 6) / 240;
 })
 
-document.querySelector('.zoom-moins').addEventListener('click',()=>{
-    camera.position.z=camera.position.z+.4;
+
+
+//zoom
+
+document.querySelector('.zoom-plus').addEventListener('click', () => {
+
+    moveZoom = true
+    zoomTo = camera.position.z - .4;
 })
+
+document.querySelector('.zoom-moins').addEventListener('click', () => {
+    moveZoom = true
+    zoomTo = camera.position.z + .4;
+})
+
+document.querySelector('.zoom-bar-wrapper').addEventListener('click', (e) => {
+    moveZoom = true
+    zoomTo = range(0, 240, .5, 4.5, e.offsetY)
+})
+
