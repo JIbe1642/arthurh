@@ -476,7 +476,7 @@ var opts={autoplay:true,width:800,controls:false};
 const player = new YTPlayer('#player',{ 'controls': 0})
 player.mute();
 
-player.load('b2Yg_T_Mk0k', [true])
+//player.load('b2Yg_T_Mk0k', [true])
 //player.setVolume(100)
 
 
