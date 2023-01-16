@@ -78,7 +78,7 @@ main {
 
 .lavie {
     height: 60vh;
-    margin-bottom: -1vh;
+    margin-bottom: -3vh;
     position: relative;
 
     display: -webkit-box;
@@ -124,16 +124,25 @@ main {
 
 .point {
     display: flex;
-    width: 23px;
-    height: 23px;
-    border-radius: 20px;
-    background-color: #2c2e2b;
     position: fixed;
     z-index: 100;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     pointer-events: auto;
+    width: 40px;
+    height: 40px;
+}
+
+.point-middle{
+    width: 23px;
+    height: 23px;
+    border-radius: 20px;
+    background-color: #2c2e2b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .point img {
@@ -360,6 +369,7 @@ main {
 
 .random,.loop{
     position: relative;
+    display:none;
 }
 
 .random:after,
@@ -382,4 +392,33 @@ main {
 
 .yt-player{
     z-index: 2022;
+}
+
+.sound-wrapper {
+    border: 2px solid #2c2e2b;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    padding: 10px;
+}
+
+.intro-sound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    bottom: -30px;
+    transform: translateY(100%);
+}
+
+.sound-text {
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-top: 8px;
+    text-align: center;
+    line-height: 16px;
 }
