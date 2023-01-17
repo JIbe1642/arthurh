@@ -29,10 +29,11 @@ const bulle = document.querySelector('.bulle')
 const pointsDiv = document.querySelector('.points')
 
 
+
 var audio_track = new Audio();
 
 var moveZoom = false;
-var zoomTo = 2.5;
+
 
 var randomMode = false;
 var loopMode = false;
@@ -54,6 +55,9 @@ var sizes = {
     width: window.innerWidth,
     height: window.innerHeight
 }
+
+var isMobile=window.matchMedia('(max-width: 480px)');
+var zoomTo = isMobile ? 4 : 2.5;
 
 /**
  * Camera
@@ -84,6 +88,8 @@ function onWindowResize() {
     camera.aspect = sizes.width / sizes.height;
     camera.updateProjectionMatrix();
     renderer.setSize(sizes.width, sizes.height);
+
+    isMobile=window.matchMedia('(max-width: 480px)');
 }
 
 
@@ -378,6 +384,12 @@ const load_track = (num, direct) => {
 
     setTimeout(() => {
         document.querySelector('.player-title').innerHTML = tracks[num].name
+       if(num==9){
+        document.querySelector('.player-title').classList.add('small')
+       }else{
+        document.querySelector('.player-title').classList.remove('small')      
+       }
+
         document.querySelector('.player-text').innerHTML = tracks[num].content
         document.querySelector('.player-bottom').classList.remove('hide')
         audio_track.src = ('sounds/' + num + '.mp3');
