@@ -57,11 +57,19 @@ var sizes = {
 }
 
 var isMobile=window.matchMedia('(max-width: 480px)');
+
+if(isMobile){
+    document.querySelector('.main-video').setAttribute('src','videos/video_mobile.mp4')
+    document.querySelector('.player-video').setAttribute('src','videos/video_mobile.mp4') 
+}
+
 var zoomTo = isMobile ? 4 : 2.5;
+
 
 /**
  * Camera
  */
+
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, .1, 100)
 camera.position.z = zoomTo
 scene.add(camera)
