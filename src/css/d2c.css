@@ -1,0 +1,45 @@
+html,
+body {
+    overscroll-behavior: none;
+}
+
+
+#fixedBtn,
+.breadcrumb,
+footer {
+    display: none !important;
+}
+
+.iframe_wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+.grid-template {
+    padding: 0 !important;
+}
+
+
+.grid-template.full-screen-element {
+    height: 100%;
+}
+
+html,
+.siteLayer,
+body .bodyLayer {
+    background: black !important;
+}
+
+body .siteLayer:not(.pg_index) header.main {
+    border-bottom: 0px solid #000000 !important;
+}
+
+.siteLayer:not(.pg_index) header.main {
+    background-color: transparent !important;
+    color: #000;
+}
+
+.sticky_header .siteLayer header.main:after {
+    display: none !important;
+}
