@@ -7,6 +7,7 @@ import './style.css'
 
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { Vector3 } from 'three'
 
 
 // Tools
@@ -24,7 +25,7 @@ const legend = document.querySelector('.legend')
 const bar = document.querySelector('.playing')
 const cursor = document.querySelector('.player-cursor')
 const zoom = document.querySelector('.zoom-inside')
-
+const bulle = document.querySelector('.bulle')
 
 var audio_track = new Audio();
 
@@ -33,6 +34,12 @@ var zoomTo = 2.5;
 
 var randomMode = false;
 var loopMode = false;
+
+
+const raycaster = new THREE.Raycaster()
+const objectsToTest = []
+
+const middle=new Vector3(0,0,0)
 
 // Scene
 const scene = new THREE.Scene()
@@ -130,6 +137,7 @@ const loadingManager = new THREE.LoadingManager(
 /**
  * Textures
  */
+
 const textureLoader = new THREE.TextureLoader(loadingManager);
 const goldTexture = textureLoader.load('textures/gold.jpg')
 
@@ -144,15 +152,25 @@ videoTexture.magFilter = THREE.LinearFilter;
 
 const material = new THREE.MeshBasicMaterial({ map: videoTexture });
 
+const transparent=new THREE.MeshBasicMaterial({ transparent:true,opacity:0});
+
 /**
  * Objects
  */
 const geometry = new THREE.PlaneGeometry(3, 3)
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
-//mesh.position.y=.59
-
 mesh.visible = false;
+
+const arthurGeo = new THREE.PlaneGeometry(.5, 1.4)
+const arthur = new THREE.Mesh(arthurGeo, transparent)
+scene.add(arthur)
+
+arthur.position.z = .1
+arthur.position.y = -.7
+arthur.position.x = .1
+
+objectsToTest.push(arthur)
 
 /**
  * Animate
@@ -204,6 +222,15 @@ function animate() {
     }
 
 
+    const bullePosition = middle.clone()
+    bullePosition.project(camera)
+
+    const translateXbulle = bullePosition.x * sizes.width * 0.5 - 11.5
+    const translateYbulle = -bullePosition.y * sizes.height * 0.5 - 11.5
+
+    bulle.style.transform = `translate(${translateXbulle}px, ${translateYbulle}px)`
+
+
     if (audio_track.duration) {
 
         var percent = audio_track.currentTime / audio_track.duration * 100;
@@ -233,6 +260,17 @@ function animate() {
 /**
  * UI
  */
+
+document.querySelector('canvas').addEventListener('click', () => {
+    raycaster.setFromCamera(mouse, camera)
+    const intersects = raycaster.intersectObjects(objectsToTest)
+    if (intersects.length > 0) {
+        bulle.classList.remove('hide')
+        setTimeout(()=>{
+            bulle.classList.add('hide')
+        },3000)
+    }
+})
 
 
 document.querySelector('.cta-intro').addEventListener('click', () => {
@@ -328,24 +366,24 @@ document.querySelectorAll('.point').forEach(point => {
 
 //previous next
 
-const nextTrack=()=>{
-    if(randomMode){
+const nextTrack = () => {
+    if (randomMode) {
 
 
-        var n=Math.round(Math.random()*11)
-        
-        while(n==n_track){
-            n=Math.round(Math.random()*11)
+        var n = Math.round(Math.random() * 11)
+
+        while (n == n_track) {
+            n = Math.round(Math.random() * 11)
         }
 
-        n_track=n;
+        n_track = n;
         document.querySelector('.player-bottom').classList.add('hide')
         load_track(n_track, false);
 
-    }else{
+    } else {
         n_track++;
         n_track %= 12;
-    
+
         document.querySelector('.player-bottom').classList.add('hide')
         load_track(n_track, false);
     }
@@ -355,7 +393,7 @@ const nextTrack=()=>{
 
 
 document.querySelector('.next').addEventListener('click', () => {
-nextTrack();
+    nextTrack();
 })
 
 document.querySelector('.previous').addEventListener('click', () => {
@@ -470,10 +508,10 @@ audio_track.addEventListener('ended', () => {
 
 
 const YTPlayer = require('yt-player')
-var opts={autoplay:true,width:800,controls:false};
+var opts = { autoplay: true, width: 800, controls: false };
 
 
-const player = new YTPlayer('#player',{ 'controls': 0})
+const player = new YTPlayer('#player', { 'controls': 0 })
 player.mute();
 
 //player.load('b2Yg_T_Mk0k', [true])
@@ -481,5 +519,5 @@ player.mute();
 
 
 player.on('playing', () => {
-  console.log(player.getDuration()) // => 351.521
+    console.log(player.getDuration()) // => 351.521
 })

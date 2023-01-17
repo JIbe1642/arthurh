@@ -142,8 +142,14 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    transition:all .4s ease;
 }
+
+.point:hover .point-middle{
+    background-color: #2c2e2b85;
+}
+
+
 
 .point img {
     width: 13px;
@@ -421,4 +427,44 @@ main {
     margin-top: 8px;
     text-align: center;
     line-height: 16px;
+}
+
+
+
+.bulle {
+    position: absolute;
+    transition: all .05s ease;
+    z-index: 1000;
+}
+
+.bulle-wrapper{
+    background: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 230px;
+    padding: 10px 16px 8px 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 16px;
+    transform: translate(-40%,-50%);
+    position: relative;
+    transition: all 1s ease;
+}
+
+.bulle.hide .bulle-wrapper {
+    opacity: 0;
+    transform: translate(-40%,-25%);
+}
+
+.bulle span{
+    position: relative;
+    z-index: 1;
+}
+
+.triangle {
+    position: absolute;
+    bottom: -17px;
+    left: 50px;
+    z-index: 0;
 }
