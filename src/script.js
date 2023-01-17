@@ -98,6 +98,12 @@ function onWindowResize() {
     renderer.setSize(sizes.width, sizes.height);
 
     isMobile=window.matchMedia('(max-width: 480px)');
+    
+    if(isMobile){
+        document.querySelector('.main-video').setAttribute('src','videos/video_mobile.mp4')
+        document.querySelector('.player-video').setAttribute('src','videos/video_mobile.mp4') 
+    }
+    
 }
 
 
