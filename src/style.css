@@ -607,7 +607,7 @@ main {
         transform: translate(0vw, 2vw);
     }
 
-    .logo-title{
+    .logo-title.main{
         top:10px;
     }
 }
