@@ -145,6 +145,7 @@ main {
     justify-content: center;
     align-items: center;
     transition:all .4s ease;
+    position: relative;
 }
 
 .point:hover .point-middle{
@@ -204,6 +205,8 @@ main {
     width: 30vh;
     overflow: hidden;
     border-radius: 100%;
+    z-index: 0;
+    transform: translateZ(0);
     position: relative;
     display: flex;
     justify-content: center;
