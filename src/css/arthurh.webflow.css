@@ -228,9 +228,9 @@
   width: 240px;
   margin-top: 10px;
   -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
+  -webkit-justify-content: space-evenly;
   -ms-flex-pack: justify;
-  justify-content: space-between;
+  justify-content: space-evenly;
   -webkit-box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;

@@ -282,6 +282,15 @@ document.querySelector('.cta-intro').addEventListener('click', () => {
     }, 500)
 })
 
+document.querySelector('.sound-wrapper').addEventListener('click', () => {
+    document.querySelector('.section-intro').classList.add('hide')
+
+    setTimeout(() => {
+        document.querySelector('.section-tuto').classList.remove('hide')
+        document.querySelector('.logo-title').classList.remove('hide')
+    }, 500)
+})
+
 
 
 const openCover = () => {
