@@ -606,4 +606,8 @@ main {
         height: 10vw;
         transform: translate(0vw, 2vw);
     }
+
+    .logo-title{
+        top:10px;
+    }
 }
