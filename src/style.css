@@ -165,7 +165,7 @@ main {
 
 
 .points {
-    transition: all 1s ease;
+    transition: opacity 1s ease;
     position: fixed;
     z-index: 10;
     pointer-events: none;
@@ -208,7 +208,7 @@ main {
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
-    background: #f8f8f8;
+    background: #eee;
     transition: all .4s ease;
 }
 

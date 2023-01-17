@@ -26,6 +26,8 @@ const bar = document.querySelector('.playing')
 const cursor = document.querySelector('.player-cursor')
 const zoom = document.querySelector('.zoom-inside')
 const bulle = document.querySelector('.bulle')
+const pointsDiv = document.querySelector('.points')
+
 
 var audio_track = new Audio();
 
@@ -40,6 +42,7 @@ const raycaster = new THREE.Raycaster()
 const objectsToTest = []
 
 const middle=new Vector3(0,0,0)
+const cover=new Vector3(0,0,0)
 
 // Scene
 const scene = new THREE.Scene()
@@ -94,7 +97,7 @@ controls.enableRotate = false
 controls.zoomSpeed = .6
 
 //controls.enableZoom=false;
-//controls.enablePan=false;
+controls.enablePan=true;
 
 controls.minDistance = .5
 controls.maxDistance = 4.5
@@ -196,11 +199,13 @@ let points = [];
 const geo = new THREE.SphereGeometry(.025, 32, 16);
 const mat = new THREE.MeshBasicMaterial({ color: 0xffff00, transparent: true, opacity: 0 });
 
+const allPoints=new THREE.Group();
+scene.add(allPoints);
 
 tracks.forEach((track, index) => {
     points.push(new THREE.Mesh(geo, mat));
     points[index].element = document.querySelector(track.element)
-    scene.add(points[index]);
+    allPoints.add(points[index]);
     points[index].position.x = track.x / 100
     points[index].position.y = -track.y / 100
 })
@@ -211,8 +216,26 @@ function animate() {
     requestAnimationFrame(animate);
 
 
+    /*
+    var speed=range(.5,4.5,0,100,camera.position.z)
+
+    var iks=-mouse.x*speed
+    var igrek=mouse.y*speed
+
+    cover.x+=mouse.x/10
+
+
+    mesh.position.x=lerp(mesh.position.x,cover.x,.01)
+
+    /*
+    mesh.position.x=allPoints.position.x=-mouse.x/2
+    mesh.position.y=allPoints.position.y=-mouse.y/2
+    */
+
     for (const point of points) {
-        const screenPosition = point.position.clone()
+
+        const  newPosition=point.position.clone()
+        const screenPosition = newPosition.add(allPoints.position)
         screenPosition.project(camera)
 
         const translateX = screenPosition.x * sizes.width * 0.5 - 11.5
@@ -253,6 +276,18 @@ function animate() {
     }
 
 
+
+
+
+
+    /*
+    canvas.style.transform = `translate(${iks}px, ${igrek}px)`
+    pointsDiv.style.transform = `translate(${iks}px, ${igrek}px)`
+    */
+
+
+
+    
     renderer.render(scene, camera);
 }
 
