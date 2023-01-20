@@ -415,9 +415,6 @@ main {
     opacity: 1;
 }
 
-.yt-player{
-    z-index: 2022;
-}
 
 .sound-wrapper {
     border: 2px solid #2c2e2b;
@@ -496,6 +493,50 @@ main {
 .sound-wrapper img{
     animation: sound 1s alternate infinite ease-in-out;
 }
+
+
+
+.push-yt{
+    z-index: 2022;
+    position: fixed;
+    right:20px;
+    bottom:0px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 1s ease-in-out;
+}
+
+.push-yt.hide{
+    opacity: 0;
+    transform: translateY(10%);
+}
+
+
+.push-yt iframe{
+pointer-events: none;
+}
+
+.yt-player{
+    width: 18vw;
+    height:10vw;
+}
+
+.yt-text {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.yt-img {
+    margin-right: 5px;
+    margin-top: -2px;
+}
+
 
 @keyframes sound{
     0%{

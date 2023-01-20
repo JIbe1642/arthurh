@@ -56,12 +56,14 @@ var sizes = {
     height: window.innerHeight
 }
 
-var isMobile=window.matchMedia('(max-width: 480px)');
+var isMobile=window.matchMedia('(max-width: 480px)').matches;
 
 if(isMobile){
     document.querySelector('.main-video').setAttribute('src','videos/video_mobile.mp4')
     document.querySelector('.player-video').setAttribute('src','videos/video_mobile.mp4') 
 }
+
+console.log(isMobile)
 
 var zoomTo = isMobile ? 4 : 2.5;
 
@@ -98,7 +100,7 @@ function onWindowResize() {
     renderer.setSize(sizes.width, sizes.height);
 
     isMobile=window.matchMedia('(max-width: 480px)');
-    
+
     if(isMobile){
         document.querySelector('.main-video').setAttribute('src','videos/video_mobile.mp4')
         document.querySelector('.player-video').setAttribute('src','videos/video_mobile.mp4') 
@@ -385,10 +387,12 @@ var n_track = 0;
 
 const load_track = (num, direct) => {
 
+    document.querySelector('.push-yt').classList.add('hide') 
     document.querySelector('.zoom-indic').classList.add('hide')
 
     n_track = num;
     audio_track.pause();
+ 
 
     document.querySelector('.section-player').classList.remove('hide')
     document.querySelector('.player-video').classList.remove('video-p0', 'video-p1', 'video-p2', 'video-p3', 'video-p4', 'video-p5', 'video-p6', 'video-p7', 'video-p8', 'video-p9', 'video-p10', 'video-p11')
@@ -398,12 +402,17 @@ const load_track = (num, direct) => {
 
     setTimeout(() => {
         document.querySelector('.player-title').innerHTML = tracks[num].name
-       if(num==9){
-        document.querySelector('.player-title').classList.add('small')
-       }else{
-        document.querySelector('.player-title').classList.remove('small')      
-       }
-
+        if(num==0){
+            player.load('gl2xAo1a0_4', [true])
+            document.querySelector('.push-yt').classList.remove('hide')
+           }else if(num==5){
+            player.load('b2Yg_T_Mk0k', [true])
+            document.querySelector('.push-yt').classList.remove('hide')
+           }
+           else{
+            document.querySelector('.push-yt').classList.add('hide')    
+           }
+    
         document.querySelector('.player-text').innerHTML = tracks[num].content
         document.querySelector('.player-bottom').classList.remove('hide')
         audio_track.src = ('sounds/' + num + '.mp3');
@@ -438,8 +447,6 @@ document.querySelectorAll('.point').forEach(point => {
 
 const nextTrack = () => {
     if (randomMode) {
-
-
         var n = Math.round(Math.random() * 11)
 
         while (n == n_track) {
@@ -481,6 +488,7 @@ document.querySelector('.player-top').addEventListener('click', () => {
     document.querySelector('.zoom-indic').classList.remove('hide')
     document.body.classList.add('grab')
     audio_track.pause();
+    document.querySelector('.push-yt').classList.add('hide') 
 })
 
 
@@ -581,13 +589,6 @@ const YTPlayer = require('yt-player')
 var opts = { autoplay: true, width: 800, controls: false };
 
 
-const player = new YTPlayer('#player', { 'controls': 0 })
+const player = new YTPlayer('#player', { 'controls': 0,'playsinline':1,'loop':1 })
 player.mute();
 
-//player.load('b2Yg_T_Mk0k', [true])
-//player.setVolume(100)
-
-
-player.on('playing', () => {
-    console.log(player.getDuration()) // => 351.521
-})
