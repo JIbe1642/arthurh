@@ -27,7 +27,8 @@ const cursor = document.querySelector('.player-cursor')
 const zoom = document.querySelector('.zoom-inside')
 const bulle = document.querySelector('.bulle')
 const pointsDiv = document.querySelector('.points')
-
+const exMove=document.querySelector('.ex-move')
+const exZoom=document.querySelector('.ex-zoom')
 
 
 var audio_track = new Audio();
@@ -139,8 +140,8 @@ controls.touches.TWO = THREE.TOUCH.DOLLY_ROTATE;
 canvas.addEventListener('mousedown', () => {
 
 
-if(!document.querySelector('.ex-move').classList.contains('hide')){
-    document.querySelector('.ex-move').classList.add('hide')
+if(!exMove.classList.contains('hide')){
+    exMove.classList.add('hide')
 }
 
 })
@@ -312,11 +313,11 @@ function animate() {
     */
 
 
-   if( !document.querySelector('.ex-zoom').classList.contains('hide')&&camera.position.z != zoomTo){
+   if( !exZoom.classList.contains('hide')&&camera.position.z != zoomTo){
         moveZoom = false
     
-        document.querySelector('.ex-zoom').classList.add('hide')
-        document.querySelector('.ex-move').classList.remove('hide')
+        exZoom.classList.add('hide')
+        exMove.classList.remove('hide')
     }
 
     renderer.render(scene, camera);
