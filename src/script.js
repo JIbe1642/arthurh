@@ -42,8 +42,8 @@ var loopMode = false;
 const raycaster = new THREE.Raycaster()
 const objectsToTest = []
 
-const middle=new Vector3(0,0,0)
-const cover=new Vector3(0,0,0)
+const middle = new Vector3(0, 0, 0)
+const cover = new Vector3(0, 0, 0)
 
 // Scene
 const scene = new THREE.Scene()
@@ -56,11 +56,11 @@ var sizes = {
     height: window.innerHeight
 }
 
-var isMobile=window.matchMedia('(max-width: 480px)').matches;
+var isMobile = window.matchMedia('(max-width: 480px)').matches;
 
-if(isMobile){
-    document.querySelector('.main-video').setAttribute('src','videos/video_mobile.mp4')
-    document.querySelector('.player-video').setAttribute('src','videos/video_mobile.mp4') 
+if (isMobile) {
+    document.querySelector('.main-video').setAttribute('src', 'videos/video_mobile.mp4')
+    document.querySelector('.player-video').setAttribute('src', 'videos/video_mobile.mp4')
 }
 
 console.log(isMobile)
@@ -99,13 +99,13 @@ function onWindowResize() {
     camera.updateProjectionMatrix();
     renderer.setSize(sizes.width, sizes.height);
 
-    isMobile=window.matchMedia('(max-width: 480px)');
+    isMobile = window.matchMedia('(max-width: 480px)');
 
-    if(isMobile){
-        document.querySelector('.main-video').setAttribute('src','videos/video_mobile.mp4')
-        document.querySelector('.player-video').setAttribute('src','videos/video_mobile.mp4') 
+    if (isMobile) {
+        document.querySelector('.main-video').setAttribute('src', 'videos/video_mobile.mp4')
+        document.querySelector('.player-video').setAttribute('src', 'videos/video_mobile.mp4')
     }
-    
+
 }
 
 
@@ -119,7 +119,7 @@ controls.enableRotate = false
 controls.zoomSpeed = .6
 
 //controls.enableZoom=false;
-controls.enablePan=true;
+controls.enablePan = true;
 
 controls.minDistance = .5
 controls.maxDistance = 4.5
@@ -177,7 +177,7 @@ videoTexture.magFilter = THREE.LinearFilter;
 
 const material = new THREE.MeshBasicMaterial({ map: videoTexture });
 
-const transparent=new THREE.MeshBasicMaterial({ transparent:true,opacity:0});
+const transparent = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 });
 
 /**
  * Objects
@@ -221,7 +221,7 @@ let points = [];
 const geo = new THREE.SphereGeometry(.025, 32, 16);
 const mat = new THREE.MeshBasicMaterial({ color: 0xffff00, transparent: true, opacity: 0 });
 
-const allPoints=new THREE.Group();
+const allPoints = new THREE.Group();
 scene.add(allPoints);
 
 tracks.forEach((track, index) => {
@@ -256,7 +256,7 @@ function animate() {
 
     for (const point of points) {
 
-        const  newPosition=point.position.clone()
+        const newPosition = point.position.clone()
         const screenPosition = newPosition.add(allPoints.position)
         screenPosition.project(camera)
 
@@ -309,7 +309,7 @@ function animate() {
 
 
 
-    
+
     renderer.render(scene, camera);
 }
 
@@ -323,9 +323,9 @@ document.querySelector('canvas').addEventListener('click', () => {
     const intersects = raycaster.intersectObjects(objectsToTest)
     if (intersects.length > 0) {
         bulle.classList.remove('hide')
-        setTimeout(()=>{
+        setTimeout(() => {
             bulle.classList.add('hide')
-        },3000)
+        }, 3000)
     }
 })
 
@@ -387,12 +387,12 @@ var n_track = 0;
 
 const load_track = (num, direct) => {
 
-    document.querySelector('.push-yt').classList.add('hide') 
+    document.querySelector('.push-yt').classList.add('hide')
     document.querySelector('.zoom-indic').classList.add('hide')
 
     n_track = num;
     audio_track.pause();
- 
+
 
     document.querySelector('.section-player').classList.remove('hide')
     document.querySelector('.player-video').classList.remove('video-p0', 'video-p1', 'video-p2', 'video-p3', 'video-p4', 'video-p5', 'video-p6', 'video-p7', 'video-p8', 'video-p9', 'video-p10', 'video-p11')
@@ -402,17 +402,23 @@ const load_track = (num, direct) => {
 
     setTimeout(() => {
         document.querySelector('.player-title').innerHTML = tracks[num].name
-        if(num==0){
+        if (num == 0) {
             player.load('gl2xAo1a0_4', [true])
             document.querySelector('.push-yt').classList.remove('hide')
-           }else if(num==5){
+            document.querySelector('.push-yt-mobile').classList.remove('hide')
+            document.querySelector('.push-yt-mobile').setAttribute('href','https://www.youtube.com/watch?v=gl2xAo1a0_4') 
+
+        } else if (num == 5) {
             player.load('b2Yg_T_Mk0k', [true])
             document.querySelector('.push-yt').classList.remove('hide')
-           }
-           else{
-            document.querySelector('.push-yt').classList.add('hide')    
-           }
-    
+            document.querySelector('.push-yt-mobile').classList.remove('hide')
+            document.querySelector('.push-yt-mobile').setAttribute('href','https://m.youtube.com/watch?v=b2Yg_T_Mk0k') 
+        }
+        else {
+            document.querySelector('.push-yt').classList.add('hide')
+            document.querySelector('.push-yt-mobile').classList.add('hide')
+        }
+
         document.querySelector('.player-text').innerHTML = tracks[num].content
         document.querySelector('.player-bottom').classList.remove('hide')
         audio_track.src = ('sounds/' + num + '.mp3');
@@ -488,7 +494,7 @@ document.querySelector('.player-top').addEventListener('click', () => {
     document.querySelector('.zoom-indic').classList.remove('hide')
     document.body.classList.add('grab')
     audio_track.pause();
-    document.querySelector('.push-yt').classList.add('hide') 
+    document.querySelector('.push-yt').classList.add('hide')
 })
 
 
@@ -586,19 +592,19 @@ audio_track.addEventListener('ended', () => {
 
 
 const YTPlayer = require('yt-player')
-const player = new YTPlayer('#player', { 'controls': 0,'playsinline':1,'loop':1 })
+const player = new YTPlayer('#player', { 'controls': 0, 'playsinline': 1, 'loop': 1 })
 player.mute();
 
 const YTPlayerBig = require('yt-player')
-const playerBig = new YTPlayerBig('#player-big', { 'playsinline':1,'loop':1 })
+const playerBig = new YTPlayerBig('#player-big', { 'playsinline': 1, 'loop': 1 })
 
-document.querySelector('.push-yt').addEventListener('click',()=>{
+document.querySelector('.push-yt').addEventListener('click', () => {
 
-    if(n_track==0){
+    if (n_track == 0) {
         playerBig.load('gl2xAo1a0_4', [true])
     }
 
-    if(n_track==5){
+    if (n_track == 5) {
         playerBig.load('b2Yg_T_Mk0k', [true])
     }
 
@@ -606,7 +612,12 @@ document.querySelector('.push-yt').addEventListener('click',()=>{
     audio_track.pause();
 })
 
-document.querySelector('.cta-close-big').addEventListener('click',()=>{
+document.querySelector('.cta-close-big').addEventListener('click', () => {
     playerBig.pause();
+    audio_track.play();
     document.querySelector('.yt-big-player').classList.add('hide')
+})
+
+document.querySelector('.push-yt-mobile').addEventListener('click', () => {
+    audio_track.pause();
 })

@@ -518,6 +518,7 @@ main {
 .push-yt iframe{
 pointer-events: none;
 background: black;
+transition:all .4s ease;
 }
 
 .yt-player{
@@ -562,7 +563,7 @@ background: black;
     background: #2c2e2b;
     border-radius: 100%;
     position: absolute;
-    top: 1vw;
+    top: 50%;
     right: 1.4vw;
     z-index: 10;
     cursor: pointer;
@@ -570,11 +571,47 @@ background: black;
     justify-content: center;
     align-items: center;
     transition: all .4s ease;
+    transform: translateY(-50%);
 }
 
 .cta-close-big:hover {
     background: black;
-    transform: scale(.9);
+}
+
+
+.yt-hover {
+    width: 3vw;
+    height: 3vw;
+    background: #2c2e2b;
+    border-radius: 100%;
+    position: absolute;
+    bottom:50%;
+    right: 50%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .4s ease;
+    transform: translate(50%,50%);
+    opacity: 0;
+    transition:all .4s ease;
+}
+
+.push-yt:hover .yt-hover{
+opacity: 1;
+}
+.push-yt:hover iframe{
+filter: brightness(0.5);
+}
+
+.yt-hover img{
+        width: 36%;
+        transform: translateX(7%);
+}
+
+
+.push-yt-mobile{
+    display: none;
 }
 
 @keyframes sound{
@@ -690,4 +727,19 @@ background: black;
     .logo-title.main{
         top:14px;
     }
+
+    .push-yt{
+        display: none;
+    }
+
+    .push-yt-mobile{
+        display: flex;
+        margin-top: 20px;
+        text-decoration: none;
+        color:#2c2e2b;
+    }
+    .push-yt-mobile.hide{
+    display: none;
+    }
+
 }
