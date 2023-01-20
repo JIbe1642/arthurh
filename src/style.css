@@ -780,7 +780,8 @@ main {
     }
 
     .logo-title.main {
-        top: 14px;
+        top: 23px;
+        font-size: 36px;
     }
 
     .push-yt,.explain {
