@@ -55,7 +55,8 @@
 
 .logo-title.main {
   position: fixed;
-  top: 20px;
+  top: 35px;
+  pointer-events: auto;
 }
 
 .logo-title.main.hide {
