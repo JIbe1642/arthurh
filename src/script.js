@@ -134,9 +134,17 @@ controls.touches.ONE = THREE.TOUCH.PAN;
 controls.touches.TWO = THREE.TOUCH.DOLLY_ROTATE;
 
 
-controls.addEventListener('start', () => {
-    moveZoom = false
+
+
+canvas.addEventListener('mousedown', () => {
+
+
+if(!document.querySelector('.ex-move').classList.contains('hide')){
+    document.querySelector('.ex-move').classList.add('hide')
+}
+
 })
+
 
 /**
  * Loading manager
@@ -298,17 +306,18 @@ function animate() {
     }
 
 
-
-
-
-
     /*
     canvas.style.transform = `translate(${iks}px, ${igrek}px)`
     pointsDiv.style.transform = `translate(${iks}px, ${igrek}px)`
     */
 
 
-
+   if( !document.querySelector('.ex-zoom').classList.contains('hide')&&camera.position.z != zoomTo){
+        moveZoom = false
+    
+        document.querySelector('.ex-zoom').classList.add('hide')
+        document.querySelector('.ex-move').classList.remove('hide')
+    }
 
     renderer.render(scene, camera);
 }
@@ -359,6 +368,7 @@ const openCover = () => {
         document.body.classList.add('grab')
         document.querySelector('.points').classList.remove('hide')
         document.querySelector('.zoom-indic').classList.remove('hide')
+        document.querySelector('.explain').classList.remove('hide')
     }, 500)
 
     mesh.visible = true;
@@ -435,6 +445,7 @@ document.querySelectorAll('.point').forEach(point => {
     point.addEventListener('click', () => {
         load_track(point.dataset.number, true);
         document.body.classList.remove('grab')
+        document.querySelector('.explain').classList.add('hide')
     })
 
     point.addEventListener('mouseover', () => {
@@ -495,6 +506,7 @@ document.querySelector('.player-top').addEventListener('click', () => {
     document.body.classList.add('grab')
     audio_track.pause();
     document.querySelector('.push-yt').classList.add('hide')
+    document.querySelector('.explain').classList.remove('hide')
 })
 
 
