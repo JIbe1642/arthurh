@@ -586,9 +586,27 @@ audio_track.addEventListener('ended', () => {
 
 
 const YTPlayer = require('yt-player')
-var opts = { autoplay: true, width: 800, controls: false };
-
-
 const player = new YTPlayer('#player', { 'controls': 0,'playsinline':1,'loop':1 })
 player.mute();
 
+const YTPlayerBig = require('yt-player')
+const playerBig = new YTPlayerBig('#player-big', { 'playsinline':1,'loop':1 })
+
+document.querySelector('.push-yt').addEventListener('click',()=>{
+
+    if(n_track==0){
+        playerBig.load('gl2xAo1a0_4', [true])
+    }
+
+    if(n_track==5){
+        playerBig.load('b2Yg_T_Mk0k', [true])
+    }
+
+    document.querySelector('.yt-big-player').classList.remove('hide')
+    audio_track.pause();
+})
+
+document.querySelector('.cta-close-big').addEventListener('click',()=>{
+    playerBig.pause();
+    document.querySelector('.yt-big-player').classList.add('hide')
+})

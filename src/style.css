@@ -505,17 +505,19 @@ main {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    transition: all 1s ease-in-out;
+    transition: all 1s 3s ease-in-out;
 }
 
 .push-yt.hide{
     opacity: 0;
     transform: translateY(10%);
+    transition: all 1s ease-in-out;
 }
 
 
 .push-yt iframe{
 pointer-events: none;
+background: black;
 }
 
 .yt-player{
@@ -537,6 +539,43 @@ pointer-events: none;
     margin-top: -2px;
 }
 
+.yt-big-player{
+    position: fixed;
+    z-index: 3000;
+    width: 100%;
+    height: 100%;
+    transition:all 1s ease;
+}
+
+#player-big{
+    width: 100%;
+    height: 100%;
+}
+
+.yt-big-player.hide{
+    opacity: 0;
+}
+
+.cta-close-big {
+    width: 4vw;
+    height: 4vw;
+    background: #2c2e2b;
+    border-radius: 100%;
+    position: absolute;
+    top: 1vw;
+    right: 1.4vw;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .4s ease;
+}
+
+.cta-close-big:hover {
+    background: black;
+    transform: scale(.9);
+}
 
 @keyframes sound{
     0%{
