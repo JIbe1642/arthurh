@@ -49,6 +49,8 @@
   letter-spacing: 3.5px;
   transition: all 1s ease;
   z-index: 1000;
+  color:#2c2e2b;
+  text-decoration: none;
 }
 
 .logo-title.main {
