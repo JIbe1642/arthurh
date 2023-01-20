@@ -652,6 +652,19 @@ main {
     transition: all 1s ease;
 }
 
+.white{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    z-index: 10000;
+    transition: all 1s ease;
+}
+
+.white.hide{
+    opacity: 0;
+}
+
 @keyframes sound {
     0% {
         transform: rotate(5deg);

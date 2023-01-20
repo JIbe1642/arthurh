@@ -634,3 +634,7 @@ document.querySelector('.cta-close-big').addEventListener('click', () => {
 document.querySelector('.push-yt-mobile').addEventListener('click', () => {
     audio_track.pause();
 })
+
+window.addEventListener('load',()=>{
+    document.querySelector('.white').classList.add('hide')
+})
