@@ -27,8 +27,8 @@ const cursor = document.querySelector('.player-cursor')
 const zoom = document.querySelector('.zoom-inside')
 const bulle = document.querySelector('.bulle')
 const pointsDiv = document.querySelector('.points')
-const exMove=document.querySelector('.ex-move')
-const exZoom=document.querySelector('.ex-zoom')
+const exMove = document.querySelector('.ex-move')
+const exZoom = document.querySelector('.ex-zoom')
 
 
 var audio_track = new Audio();
@@ -138,9 +138,9 @@ controls.touches.TWO = THREE.TOUCH.DOLLY_ROTATE;
 canvas.addEventListener('mousedown', () => {
 
 
-if(!exMove.classList.contains('hide')){
-    exMove.classList.add('hide')
-}
+    if (!exMove.classList.contains('hide')) {
+        exMove.classList.add('hide')
+    }
 
 })
 
@@ -311,18 +311,18 @@ function animate() {
     */
 
 
-   if( !exZoom.classList.contains('hide')&&camera.position.z != zoomTo){
+    if (!exZoom.classList.contains('hide') && camera.position.z != zoomTo) {
         moveZoom = false
-    
+
         exZoom.classList.add('hide')
         exMove.classList.remove('hide')
     }
 
-camera.position.x=clamp(camera.position.x,-1.5,1.5)
-camera.position.y=clamp(camera.position.y,-1.5,1.5)
+    camera.position.x = clamp(camera.position.x, -1.5, 1.5)
+    camera.position.y = clamp(camera.position.y, -1.5, 1.5)
 
-controls.target.x = clamp(controls.target.x, -1.5,1.5)
-controls.target.y = clamp(controls.target.y, -1.5,1.5)
+    controls.target.x = clamp(controls.target.x, -1.5, 1.5)
+    controls.target.y = clamp(controls.target.y, -1.5, 1.5)
 
     renderer.render(scene, camera);
 }
@@ -424,13 +424,13 @@ const load_track = (num, direct) => {
             player.load('gl2xAo1a0_4', [true])
             document.querySelector('.push-yt').classList.remove('hide')
             document.querySelector('.push-yt-mobile').classList.remove('hide')
-            document.querySelector('.push-yt-mobile').setAttribute('href','https://www.youtube.com/watch?v=gl2xAo1a0_4') 
+            document.querySelector('.push-yt-mobile').setAttribute('href', 'https://www.youtube.com/watch?v=gl2xAo1a0_4')
 
         } else if (num == 5) {
             player.load('b2Yg_T_Mk0k', [true])
             document.querySelector('.push-yt').classList.remove('hide')
             document.querySelector('.push-yt-mobile').classList.remove('hide')
-            document.querySelector('.push-yt-mobile').setAttribute('href','https://m.youtube.com/watch?v=b2Yg_T_Mk0k') 
+            document.querySelector('.push-yt-mobile').setAttribute('href', 'https://m.youtube.com/watch?v=b2Yg_T_Mk0k')
         }
         else {
             document.querySelector('.push-yt').classList.add('hide')
@@ -446,9 +446,9 @@ const load_track = (num, direct) => {
         document.querySelector('.icon-play').classList.add('hide')
         document.querySelector('.icon-pause').classList.remove('hide')
 
+        document.querySelector('.player-video').setAttribute('src', 'videos/mini/mini_' + num + '_2.mp4')
 
-document.querySelector('.player-video').setAttribute('src','videos/mini/mini_'+num+'_1.mp4')
-        
+
     }, time)
 
 }
@@ -486,7 +486,7 @@ const nextTrack = () => {
 
         n_track = n;
         document.querySelector('.player-bottom').classList.add('hide')
-        document.querySelector('.player-top').classList.add('hide') 
+        document.querySelector('.player-top').classList.add('hide')
         load_track(n_track, false);
 
     } else {
@@ -651,6 +651,6 @@ document.querySelector('.push-yt-mobile').addEventListener('click', () => {
     audio_track.pause();
 })
 
-window.addEventListener('load',()=>{
+window.addEventListener('load', () => {
     document.querySelector('.white').classList.add('hide')
 })

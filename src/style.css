@@ -230,6 +230,7 @@ main {
 
 .player-top.hide{
     opacity: 0;
+    transition: all 1s ease-in-out;
 }
 
 
@@ -292,7 +293,7 @@ main {
 .player-top {
     position: relative;
     cursor: pointer;
-    transition: all 1s ease-in-out;
+    transition: all 1s 1s ease-in-out;
 }
 
 .cta-close {
@@ -314,11 +315,12 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: all 1s ease-in-out;
+    transition: all 1s 1s ease-in-out;
 }
 
 .player-bottom.hide {
     opacity: 0;
+    transition: all 1s ease-in-out;
 }
 
 .zoom-indic {
