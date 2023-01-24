@@ -654,3 +654,13 @@ document.querySelector('.push-yt-mobile').addEventListener('click', () => {
 window.addEventListener('load', () => {
     document.querySelector('.white').classList.add('hide')
 })
+
+document.querySelector('.player-video').addEventListener('play',()=>{
+    document.querySelector('.player-video').classList.remove('hide')
+    console.log('play')
+})
+
+document.querySelector('.player-video').addEventListener('loadstart',()=>{
+    document.querySelector('.player-video').classList.add('hide')
+    console.log('load')
+})

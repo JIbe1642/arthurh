@@ -238,8 +238,12 @@ main {
     height: 100%;
     width: 100%;
     position: absolute;
+    transition: all 1s ease-in-out;
 }
 
+.player-video.hide{
+    opacity: 0;
+}
 
 .video-p0 {
     transform: translate(-21.5%, -23%) scale(.65);
