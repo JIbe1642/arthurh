@@ -300,10 +300,11 @@ function animate() {
 
     controls.update();
 
+    zoomTo=clamp(zoomTo,.5,4.5)
+
     if (moveZoom) {
         camera.position.z = lerp(camera.position.z, zoomTo, .05)
     }
-
 
     /*
     canvas.style.transform = `translate(${iks}px, ${igrek}px)`
@@ -457,9 +458,15 @@ const load_track = (num, direct) => {
 document.querySelectorAll('.point').forEach(point => {
 
     point.addEventListener('click', () => {
-        load_track(point.dataset.number, true);
-        document.body.classList.remove('grab')
-        document.querySelector('.explain').classList.add('hide')
+        if(document.querySelector('.section-tuto').classList.contains('hide')){
+
+            console.log('open')
+
+            load_track(point.dataset.number, true);
+            document.body.classList.remove('grab')
+            document.querySelector('.explain').classList.add('hide')
+        }
+
     })
 
     point.addEventListener('mouseover', () => {
