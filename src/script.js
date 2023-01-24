@@ -320,6 +320,12 @@ function animate() {
         exMove.classList.remove('hide')
     }
 
+camera.position.x=clamp(camera.position.x,-1.5,1.5)
+camera.position.y=clamp(camera.position.y,-1.5,1.5)
+
+controls.target.x = clamp(controls.target.x, -1.5,1.5)
+controls.target.y = clamp(controls.target.y, -1.5,1.5)
+
     renderer.render(scene, camera);
 }
 
