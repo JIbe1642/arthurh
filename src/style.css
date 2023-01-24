@@ -228,11 +228,15 @@ main {
     transform: scale(1.1) translate(-1.4vh, 1.4vh);
 }
 
+.player-top.hide{
+    opacity: 0;
+}
+
 
 .player-video {
-    height: 160vh;
+    height: 100%;
+    width: 100%;
     position: absolute;
-    transition: all 2s ease-in-out;
 }
 
 
@@ -288,6 +292,7 @@ main {
 .player-top {
     position: relative;
     cursor: pointer;
+    transition: all 1s ease-in-out;
 }
 
 .cta-close {
