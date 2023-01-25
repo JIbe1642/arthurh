@@ -855,8 +855,8 @@ main {
     }
 
     .tuto-title {
-        font-size: 21px;
-        letter-spacing: 0px;
+        font-size: 20px;
+        letter-spacing: -.5px;
     }
 
     .tuto-text-wrapper {
@@ -872,8 +872,8 @@ main {
     }
 
     .player-img-wrapper {
-        height: 40vw;
-        width: 40vw;
+        height: 24vh;
+        width: 24vh;
     }
 
 
@@ -943,10 +943,6 @@ main {
         overflow: hidden;
     }
 
-    .player-img-wrapper {
-        height: 30vw;
-        width: 30vw;
-    }
     
     .controls{
         margin-top: 10px;
